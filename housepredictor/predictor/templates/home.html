@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predict House Price</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f7f9fc;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        margin: 0;
+      }
+      .form-container {
+        background-color: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+      .form-container h1 {
+        color: #4bc0c0;
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+      input[type='number'],
+      input[type='text'] {
+        width: 100%;
+        padding: 0.8rem;
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        font-size: 1rem;
+      }
+      button {
+        width: 100%;
+        padding: 0.8rem;
+        background-color: #4bc0c0;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      button:hover {
+        background-color: #3ba6a6;
+      }
+      .checkbox-container {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem;
+      }
+      .checkbox-container input {
+        margin-right: 10px;
+      }
+      .address-input {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Predict House Price</h1>
+      <form action="{% url 'result' %}" method="POST">
+        {% csrf_token %}
+        <input
+          type="number"
+          step="any"
+          name="income"
+          placeholder="Avg. Area Income"
+          required
+        />
+        <input
+          type="number"
+          step="any"
+          name="age"
+          placeholder="Avg. Area House Age"
+          required
+        />
+        <input
+          type="number"
+          step="any"
+          name="rooms"
+          placeholder="Avg. Area Number of Rooms"
+          required
+        />
+        <input
+          type="number"
+          step="any"
+          name="bedrooms"
+          placeholder="Avg. Area Number of Bedrooms"
+          required
+        />
+        <input
+          type="number"
+          step="any"
+          name="population"
+          placeholder="Area Population"
+          required
+        />
+
+        <div class="checkbox-container">
+          <input type="checkbox" id="toggleAddress" />
+          <label for="toggleAddress">Add Address</label>
+        </div>
+        <input
+          type="text"
+          class="address-input"
+          id="addressInput"
+          name="address"
+          placeholder="Address"
+        />
+
+        <button type="submit">Predict Price</button>
+      </form>
+    </div>
+
+    <script>
+      const toggle = document.getElementById('toggleAddress');
+      const addressInput = document.getElementById('addressInput');
+      toggle.addEventListener('change', () => {
+        addressInput.style.display = toggle.checked ? 'block' : 'none';
+      });
+    </script>
+  </body>
+</html>
