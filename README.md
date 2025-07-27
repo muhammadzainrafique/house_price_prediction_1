@@ -17,8 +17,15 @@ This dataset contains housing data used to train the model to predict prices.
 
 To directly download the dataset from Kaggle into your Google Colab or local machine:
 
-### Step 1: Install opendatasets
+### Step 1: Install libraries
 
 ```bash
-pip install opendatasets
+pip install opendatasets numpy pandas joblib scikit-learn
+```
+
+### Step 1: Install libraries
+
+```Download Dataset
+import opendatasets as od
+od.download("https://www.kaggle.com/datasets/huyngohoang/housingcsv/data")
 ```
